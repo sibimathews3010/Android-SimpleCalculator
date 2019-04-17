@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
                 TextView resultTextView = findViewById(R.id.ResultTextView);
 
                 // Get value from Edit Text
-                double num1 = Double.parseDouble(firstNumEditText.getText().toString());
-                double num2 = Double.parseDouble(secondNumEditText.getText().toString());
+                BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
+                BigDecimal num2 = new BigDecimal(secondNumEditText.getText().toString());
 
-                double result = num1 + num2;
+                BigDecimal result = num1.add(num2);
 
                 resultTextView.setText(String.valueOf(result));
             }
