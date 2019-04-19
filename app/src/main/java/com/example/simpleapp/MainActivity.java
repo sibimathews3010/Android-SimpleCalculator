@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
                 TextView operationTextView = findViewById(R.id.operationTextView);
 
                 // Get value from Edit Text
-                BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
-                BigDecimal num2 = new BigDecimal(secondNumEditText.getText().toString());
+                double num1 = Double.parseDouble(firstNumEditText.getText().toString());
+                double num2 = Double.parseDouble(secondNumEditText.getText().toString());
 
-                BigDecimal result = num1.divide(num2, RoundingMode.HALF_UP);
+                double result = num1 / num2;
 
                 operationTextView.setText("Divide by");
                 resultTextView.setText(String.valueOf(result));
