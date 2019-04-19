@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button addBtn = findViewById(R.id.AddBtn);
+        Button subtractBtn = findViewById(R.id.SubtractBtn);
         Button multiplyBtn = findViewById(R.id.MultiplyBtn);
+
 
         // Creates an on click event for the addBtn
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +39,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Creates an onclick event for multiplication
+        // Create an onclick event for the subtractBtn
+        subtractBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
+            }
+        });
+
+
+        // Create an onclick event for multiplication
         multiplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
