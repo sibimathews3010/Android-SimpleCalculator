@@ -44,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
+                EditText secondNumEditText = findViewById(R.id.SecondNumEditText);
+                TextView resultTextView = findViewById(R.id.ResultTextView);
+
+                BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
+                BigDecimal num2 = new BigDecimal(secondNumEditText.getText().toString());
+
+                BigDecimal result = num1.subtract(num2);
+
+                resultTextView.setText(String.valueOf(result));
             }
         });
 
