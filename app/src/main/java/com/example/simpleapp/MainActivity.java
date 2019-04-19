@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Button addBtn = findViewById(R.id.AddBtn);
         Button subtractBtn = findViewById(R.id.SubtractBtn);
         Button multiplyBtn = findViewById(R.id.MultiplyBtn);
+        Button divideBtn = findViewById(R.id.DivideBtn);
 
 
         // Creates an on click event for the addBtn
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
                 EditText secondNumEditText = findViewById(R.id.SecondNumEditText);
                 TextView resultTextView = findViewById(R.id.ResultTextView);
+                TextView operationTextView = findViewById(R.id.operationTextView);
 
                 // Get value from Edit Text
                 BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
                 BigDecimal result = num1.add(num2);
 
+                operationTextView.setText("Add");
                 resultTextView.setText(String.valueOf(result));
             }
         });
@@ -46,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
                 EditText secondNumEditText = findViewById(R.id.SecondNumEditText);
                 TextView resultTextView = findViewById(R.id.ResultTextView);
+                TextView operationTextView = findViewById(R.id.operationTextView);
 
                 BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
                 BigDecimal num2 = new BigDecimal(secondNumEditText.getText().toString());
 
                 BigDecimal result = num1.subtract(num2);
 
+                operationTextView.setText("Subtract");
                 resultTextView.setText(String.valueOf(result));
             }
         });
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
                 EditText secondNumEditText = findViewById(R.id.SecondNumEditText);
                 TextView resultTextView = findViewById(R.id.ResultTextView);
+                TextView operationTextView = findViewById(R.id.operationTextView);
 
                 // Get value from Edit Text
                 BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
@@ -71,9 +78,31 @@ public class MainActivity extends AppCompatActivity {
 
                 BigDecimal result = num1.multiply(num2);
 
+                operationTextView.setText("Multiply by");
                 resultTextView.setText(String.valueOf(result));
             }
         });
+
+        // Create an onclick event for divideBtn
+        divideBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstNumEditText = findViewById(R.id.FirstNumEditText);
+                EditText secondNumEditText = findViewById(R.id.SecondNumEditText);
+                TextView resultTextView = findViewById(R.id.ResultTextView);
+                TextView operationTextView = findViewById(R.id.operationTextView);
+
+                // Get value from Edit Text
+                BigDecimal num1 = new BigDecimal(firstNumEditText.getText().toString());
+                BigDecimal num2 = new BigDecimal(secondNumEditText.getText().toString());
+
+                BigDecimal result = num1.divide(num2, RoundingMode.HALF_UP);
+
+                operationTextView.setText("Divide by");
+                resultTextView.setText(String.valueOf(result));
+            }
+        });
+
 
     }
 }
