@@ -338,10 +338,11 @@ public class MainActivity extends AppCompatActivity {
                     else
                         operationDisplay.setText(opStr + decimalFormat.format(curNum) + " + ");
 
-
-                    newOperation = false;
+                    resultDisplay.setText(decimalFormat.format(total));
 
                     // Prepare for new number
+                    // Reset operation
+                    newOperation = false;
                     // Reset decimal to false
                     isDecimal = false;
                     // Reset insert
