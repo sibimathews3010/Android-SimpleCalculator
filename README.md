@@ -7,5 +7,7 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
 - Gained experience with View Click Events
 - Gained experience with Java arithmetic operations and data types
 - Gained experience working with Relative layout and Linear layout
+- Gained experience using DecimalFormat
 - Buttons/ImageButtons
 - Allows maximum input of 16 digits
+
