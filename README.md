@@ -1,7 +1,7 @@
 # Android-SimpleCalculator
 A simple calculator that calculates addition, subtraction, mulitiplication and division of two numbers
 
-## Learning Outcomes
+## Learning Outcome
 - Familiarized with Android Studio IDE
 - Gained experience with android development layout
 - Gained experience with View Click Events
