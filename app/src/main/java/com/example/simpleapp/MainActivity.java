@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isDecimal = false;
 
     DecimalFormat decimalFormat = new DecimalFormat("#.##########");
-    NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +57,27 @@ public class MainActivity extends AppCompatActivity {
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double curNum = Double.parseDouble(resultDisplay.getText().toString());
-                if (curNum == 0 && !isDecimal) {
-                    resultDisplay.setText(decimalFormat.format(curNum) + ".");
-                    isDecimal = true;
-                } else if(!isDecimal) {
-                    resultDisplay.setText(decimalFormat.format(curNum) + ".");
+                if(!isDecimal) {
+                    resultDisplay.setText(resultDisplay.getText() + ".");
                     isDecimal = true;
                 }
-
             }
         });
+
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 double curNum = Double.parseDouble(resultDisplay.getText().toString());
-                if (curNum == 0)
-                    resultDisplay.setText(String.valueOf(decimalFormat.format(curNum)));
-                else
-                    resultDisplay.setText(decimalFormat.format(curNum) + "0");
+                String curStr = resultDisplay.getText().toString();
+                operationDisplay.setText(decimalFormat.format((curNum)));
+                if (curNum == 0) {
+                    if(isDecimal)
+                        resultDisplay.setText(curStr + "0");
+                    else
+                        resultDisplay.setText("0");
+                } else {
+                        resultDisplay.setText(curStr + "0");
+                }
             }
         });
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double curNum = Double.parseDouble(resultDisplay.getText().toString());
+                operationDisplay.setText(decimalFormat.format((curNum)));
                 if (curNum == 0)
                     resultDisplay.setText("1");
                 else
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double curNum = Double.parseDouble(resultDisplay.getText().toString());
+                operationDisplay.setText(decimalFormat.format((curNum)));
                 if (curNum == 0)
                     resultDisplay.setText("2");
                 else
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double curNum = Double.parseDouble(resultDisplay.getText().toString());
+                operationDisplay.setText(decimalFormat.format((curNum)));
                 if (curNum == 0)
                     resultDisplay.setText("3");
                 else
