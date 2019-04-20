@@ -51,11 +51,13 @@
                 android:layout_height="90dp"
                 android:text="CE"
                 android:textSize="40sp"/>
+
             <Button
+                android:id="@+id/btnClearAll"
                 android:layout_width="100dp"
                 android:layout_height="90dp"
                 android:text="C"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
 
             <ImageButton
                 android:layout_width="100dp"
