@@ -1,5 +1,6 @@
 package com.example.simpleapp;
 
+import android.graphics.Path;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btnClearLast;
 
     // Operator checks
+    private enum Operation  {
+        NONE,
+        ADDITION,
+        SUBTRACTION,
+        MULTIPLICATION,
+        DIVISION;
+    }
+
     private boolean newOperation = true;
     private boolean isDecimal = false;
     private boolean addition = false;
@@ -56,11 +65,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean insert = false;
     DecimalFormat decimalFormat = new DecimalFormat("#.##########");
     private double total = 0;
+    private Operation lastOperation = Operation.NONE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         // Setup View
         setupView();
@@ -319,26 +331,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (newOperation) {
-
                     addition = true;
                     subtraction = false;
                     multiplication = false;
                     division = false;
 
-
                     String opStr = operationDisplay.getText().toString();
+
+                    // If this is the first operation in the equation
+                    if (opStr.length() == 0) {
+                        lastOperation = Operation.ADDITION;
+                    }
 
                     String curStr = resultDisplay.getText().toString();
                     double curNum = Double.parseDouble(curStr);
+                    if (lastOperation != Operation.ADDITION) {
+                        switch(lastOperation) {
+                            case SUBTRACTION:
+                                total = total - curNum;
+                                break;
+                        }
+                        resultDisplay.setText(decimalFormat.format(total));
+                        operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " + ");
+                        lastOperation = Operation.ADDITION;
+                    } else {
+                        total = total + curNum;
+                        resultDisplay.setText(decimalFormat.format(total));
 
-                    total = total + curNum;
+                        if (operationDisplay.getText().length() == 0)
+                            operationDisplay.setText(decimalFormat.format(curNum) + " + ");
+                        else
+                            operationDisplay.setText(opStr + decimalFormat.format(curNum) + " + ");
 
-                    if (operationDisplay.getText().length() == 0)
-                        operationDisplay.setText(decimalFormat.format(curNum) + " + ");
-                    else
-                        operationDisplay.setText(opStr + decimalFormat.format(curNum) + " + ");
+                        lastOperation = Operation.ADDITION;
 
-                    resultDisplay.setText(decimalFormat.format(total));
+                    }
 
                     // Prepare for new number
                     // Reset operation
@@ -347,7 +374,58 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
+                }
+            }
+        });
 
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (newOperation) {
+                    addition = false;
+                    subtraction = true;
+                    multiplication = false;
+                    division = false;
+
+                    // If this is the first operation in the equation
+                    String opStr = operationDisplay.getText().toString();
+                    if (opStr.length() == 0) {
+                        lastOperation = Operation.ADDITION;
+                    }
+
+                    String curStr = resultDisplay.getText().toString();
+                    double curNum = Double.parseDouble(curStr);
+                    if (lastOperation != Operation.SUBTRACTION) {
+                        switch (lastOperation) {
+                            case ADDITION:
+                                total = total + curNum;
+                                break;
+                        }
+                        resultDisplay.setText(decimalFormat.format(total));
+                        operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " - ");
+                        lastOperation = Operation.SUBTRACTION;
+                    } else {
+                        if (operationDisplay.getText().length() == 0)
+                            total = curNum - total;
+                        else
+                            total = total - curNum;
+
+                        if (operationDisplay.getText().length() == 0)
+                            operationDisplay.setText(decimalFormat.format(curNum) + " - ");
+                        else
+                            operationDisplay.setText(opStr + decimalFormat.format(curNum) + " - ");
+
+                        resultDisplay.setText(decimalFormat.format(total));
+                        lastOperation = Operation.SUBTRACTION;
+                    }
+
+                    // Prepare for new number
+                    // Reset operation
+                    newOperation = false;
+                    // Reset decimal to false
+                    isDecimal = false;
+                    // Reset insert
+                    insert = true;
                 }
             }
         });
@@ -358,7 +436,15 @@ public class MainActivity extends AppCompatActivity {
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
 
-                total = total + curNum;
+                switch (lastOperation) {
+                    case ADDITION:
+                        total = total + curNum;
+                        break;
+                    case SUBTRACTION:
+                        total = total - curNum;
+                        break;
+                }
+
                 resultDisplay.setText(decimalFormat.format(total));
 
                 // Reset
@@ -380,6 +466,7 @@ public class MainActivity extends AppCompatActivity {
         resultDisplay.setText("0");
         operationDisplay.setText("");
         isDecimal = false;
+        total = 0;
     }
 
     private void setupView() {
