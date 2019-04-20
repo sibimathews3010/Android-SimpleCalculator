@@ -46,14 +46,16 @@ public class MainActivity extends AppCompatActivity {
     private Button btnClearLast;
 
     // Operator checks
-    private boolean isDecimal = false;
     private boolean newOperation = true;
+    private boolean isDecimal = false;
     private boolean addition = false;
     private boolean subtraction = false;
     private boolean multiplication = false;
     private boolean division = false;
 
+    private boolean insert = false;
     DecimalFormat decimalFormat = new DecimalFormat("#.##########");
+    private double total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +69,18 @@ public class MainActivity extends AppCompatActivity {
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
-                if(!isDecimal) {
-                    resultDisplay.setText(resultDisplay.getText() + ".");
+                if (insert) {
+                    resultDisplay.setText("0.");
+                    insert = false;
                     isDecimal = true;
+                } else {
+                    if(!isDecimal) {
+                        resultDisplay.setText(resultDisplay.getText() + ".");
+                        isDecimal = true;
+                    }
                 }
             }
         });
@@ -82,201 +88,230 @@ public class MainActivity extends AppCompatActivity {
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if(isDecimal)
+                if (insert) {
+                    resultDisplay.setText("0");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if(isDecimal)
+                            resultDisplay.setText(curStr + "0");
+                        else
+                            resultDisplay.setText("0");
+                    } else
                         resultDisplay.setText(curStr + "0");
-                    else
-                        resultDisplay.setText("0");
-                } else
-                    resultDisplay.setText(curStr + "0");
+                }
             }
         });
 
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("1");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "1");
+                        else
+                            resultDisplay.setText("1");
+                    } else
                         resultDisplay.setText(curStr + "1");
-                    else
-                        resultDisplay.setText("1");
-                } else
-                    resultDisplay.setText(curStr + "1");
+                }
             }
         });
 
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("2");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "2");
+                        else
+                            resultDisplay.setText("2");
+                    } else
                         resultDisplay.setText(curStr + "2");
-                    else
-                        resultDisplay.setText("2");
-                } else
-                    resultDisplay.setText(curStr + "2");
-
+                }
             }
         });
 
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble((curStr));
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("3");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "3");
+                        else
+                            resultDisplay.setText("3");
+                    } else
                         resultDisplay.setText(curStr + "3");
-                    else
-                        resultDisplay.setText("3");
-                } else
-                    resultDisplay.setText(curStr + "3");
+                }
             }
         });
 
         btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("4");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "4");
+                        else
+                            resultDisplay.setText("4");
+                    } else
                         resultDisplay.setText(curStr + "4");
-                    else
-                        resultDisplay.setText("4");
-                } else
-                    resultDisplay.setText(curStr + "4");
+                }
             }
         });
 
         btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("5");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "5");
+                        else
+                            resultDisplay.setText("5");
+                    } else
                         resultDisplay.setText(curStr + "5");
-                    else
-                        resultDisplay.setText("5");
-                } else
-                    resultDisplay.setText(curStr + "5");
+                }
             }
         });
 
         btnSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("6");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "6");
+                        else
+                            resultDisplay.setText("6");
+                    } else
                         resultDisplay.setText(curStr + "6");
-                    else
-                        resultDisplay.setText("6");
-                } else
-                    resultDisplay.setText(curStr + "6");
+                }
             }
         });
 
         btnSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("7");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "7");
+                        else
+                            resultDisplay.setText("7");
+                    } else
                         resultDisplay.setText(curStr + "7");
-                    else
-                        resultDisplay.setText("7");
-                } else
-                    resultDisplay.setText(curStr + "7");
+                }
             }
         });
 
         btnEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("8");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "8");
+                        else
+                            resultDisplay.setText("8");
+                    } else
                         resultDisplay.setText(curStr + "8");
-                    else
-                        resultDisplay.setText("8");
-                } else
-                    resultDisplay.setText(curStr + "8");
+                }
             }
         });
 
         btnNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset operation
-                if (!newOperation && (addition || subtraction || multiplication || division)) {
+                if (!newOperation && (addition || subtraction || multiplication || division))
                     newOperation = true;
-                }
 
                 String curStr = resultDisplay.getText().toString();
                 double curNum = Double.parseDouble(curStr);
-                if (curNum == 0) {
-                    if (isDecimal)
+                if (insert) {
+                    resultDisplay.setText("9");
+                    insert = false;
+                } else {
+                    if (curNum == 0) {
+                        if (isDecimal)
+                            resultDisplay.setText(curStr + "9");
+                        else
+                            resultDisplay.setText("9");
+                    } else
                         resultDisplay.setText(curStr + "9");
-                    else
-                        resultDisplay.setText("9");
-                } else
-                    resultDisplay.setText(curStr + "9");
+                }
             }
         });
 
@@ -290,9 +325,14 @@ public class MainActivity extends AppCompatActivity {
                     multiplication = false;
                     division = false;
 
+
+                    String opStr = operationDisplay.getText().toString();
+
                     String curStr = resultDisplay.getText().toString();
                     double curNum = Double.parseDouble(curStr);
-                    String opStr = operationDisplay.getText().toString();
+
+                    total = total + curNum;
+
                     if (operationDisplay.getText().length() == 0)
                         operationDisplay.setText(decimalFormat.format(curNum) + " + ");
                     else
@@ -302,23 +342,43 @@ public class MainActivity extends AppCompatActivity {
                     newOperation = false;
 
                     // Prepare for new number
-                    // Reset resultDisplay to zero
-                    resultDisplay.setText("0");
                     // Reset decimal to false
                     isDecimal = false;
+                    // Reset insert
+                    insert = true;
 
                 }
+            }
+        });
+
+        btnEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String curStr = resultDisplay.getText().toString();
+                double curNum = Double.parseDouble(curStr);
+
+                total = total + curNum;
+                resultDisplay.setText(decimalFormat.format(total));
+
+                // Reset
+                operationDisplay.setText("");
+                isDecimal = false;
+                total = 0;
             }
         });
 
         btnClearAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultDisplay.setText("0");
-                operationDisplay.setText("");
-                isDecimal = false;
+                reset();
             }
         });
+    }
+
+    private void reset() {
+        resultDisplay.setText("0");
+        operationDisplay.setText("");
+        isDecimal = false;
     }
 
     private void setupView() {
