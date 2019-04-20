@@ -72,18 +72,7 @@ public class MainActivity extends AppCompatActivity {
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double curNum = 0.0;
-
-                if (isDecimal  == true) {
-                    try {
-                        Number number = format.parse(resultDisplay.getText().toString().replace('.',','));
-                        curNum = number.doubleValue();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    curNum = Double.parseDouble(resultDisplay.getText().toString());
-                }
+                double curNum = Double.parseDouble(resultDisplay.getText().toString());
                 if (curNum == 0)
                     resultDisplay.setText(String.valueOf(decimalFormat.format(curNum)));
                 else
@@ -94,18 +83,7 @@ public class MainActivity extends AppCompatActivity {
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double curNum = 0.0;
-
-                if (isDecimal  == true) {
-                    try {
-                        Number number = format.parse(resultDisplay.getText().toString().replace('.',','));
-                        curNum = number.doubleValue();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    curNum = Double.parseDouble(resultDisplay.getText().toString());
-                }
+                double curNum = Double.parseDouble(resultDisplay.getText().toString());
                 if (curNum == 0)
                     resultDisplay.setText("1");
                 else
@@ -116,18 +94,7 @@ public class MainActivity extends AppCompatActivity {
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double curNum = 0.0;
-
-                if (isDecimal  == true) {
-                    try {
-                        Number number = format.parse(resultDisplay.getText().toString().replace('.',','));
-                        curNum = number.doubleValue();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    curNum = Double.parseDouble(resultDisplay.getText().toString());
-                }
+                double curNum = Double.parseDouble(resultDisplay.getText().toString());
                 if (curNum == 0)
                     resultDisplay.setText("2");
                 else
@@ -139,18 +106,7 @@ public class MainActivity extends AppCompatActivity {
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double curNum = 0.0;
-
-                if (isDecimal  == true) {
-                    try {
-                        Number number = format.parse(resultDisplay.getText().toString().replace('.',','));
-                        curNum = number.doubleValue();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    curNum = Double.parseDouble(resultDisplay.getText().toString());
-                }
+                double curNum = Double.parseDouble(resultDisplay.getText().toString());
                 if (curNum == 0)
                     resultDisplay.setText("3");
                 else
