@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">SimpleApp</string>
-    <string name="textViewHint">Please Enter a Number</string>
+    <string name="app_name">Simple Calculator</string>
     <string name="button_add">Add</string>
     <string name="button_sub">Subtract</string>
     <string name="button_multiply">Multiply</string>
