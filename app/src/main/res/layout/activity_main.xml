@@ -60,11 +60,12 @@
                 android:textSize="40sp" />
 
             <ImageButton
+                android:id="@+id/btnDelete"
                 android:layout_width="100dp"
                 android:layout_height="90dp"
                 android:padding="35dp"
-                android:src="@drawable/back_icon"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/back_icon" />
 
             <ImageButton
                 android:id="@+id/btnDivide"

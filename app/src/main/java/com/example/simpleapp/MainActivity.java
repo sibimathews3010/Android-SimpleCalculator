@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnDivide;
     private ImageButton btnEqual;
     private Button btnDot;
+    private ImageButton btnDelete;
 
     // TextViews
     private TextView resultDisplay;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean division = false;
 
     private boolean insert = false;
-    DecimalFormat decimalFormat = new DecimalFormat("#.##########");
+    DecimalFormat decimalFormat = new DecimalFormat("#.###############");
     private double total = 0;
     private Operation lastOperation;
 
@@ -565,7 +566,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -594,6 +594,26 @@ public class MainActivity extends AppCompatActivity {
                 isDecimal = false;
                 insert = true;
                 total = 0;
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get current ResultDisplay string
+                String curStr = resultDisplay.getText().toString();
+
+                // If there is only one char in string
+                if (curStr.length() == 1) {
+                    resultDisplay.setText(String.valueOf(0));
+                } else {
+                    // Remove the last char in string
+                    int lastIndex = curStr.length() - 1;
+                    String newStr = curStr.substring(0,lastIndex);
+
+                    // Set the newStr to ResultDisplay
+                    resultDisplay.setText(newStr);
+                }
             }
         });
 
@@ -632,6 +652,7 @@ public class MainActivity extends AppCompatActivity {
         btnDivide = findViewById(R.id.btnDivide);
         btnEqual = findViewById(R.id.btnEqual);
         btnDot = findViewById(R.id.btnDot);
+        btnDelete = findViewById(R.id.btnDelete);
 
         // TextViews
         resultDisplay = findViewById(R.id.text_display);
