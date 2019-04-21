@@ -353,19 +353,23 @@ public class MainActivity extends AppCompatActivity {
                             case MULTIPLICATION:
                                 total = total * curNum;
                                 break;
+                            case DIVISION:
+                                total = total / curNum;
+                                break;
                         }
                         resultDisplay.setText(decimalFormat.format(total));
                         operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " + ");
                         lastOperation = Operation.ADDITION;
                     } else {
                         total = total + curNum;
-                        resultDisplay.setText(decimalFormat.format(total));
 
                         if (operationDisplay.getText().length() == 0)
                             operationDisplay.setText(decimalFormat.format(curNum) + " + ");
                         else
                             operationDisplay.setText(opStr + decimalFormat.format(curNum) + " + ");
 
+                        // Display intermediate total
+                        resultDisplay.setText(decimalFormat.format(total));
                         lastOperation = Operation.ADDITION;
                     }
 
@@ -406,6 +410,9 @@ public class MainActivity extends AppCompatActivity {
                             case MULTIPLICATION:
                                 total = total * curNum;
                                 break;
+                            case DIVISION:
+                                total = total / curNum;
+                                break;
                         }
                         resultDisplay.setText(decimalFormat.format(total));
                         operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " - ");
@@ -421,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                             operationDisplay.setText(opStr + decimalFormat.format(curNum) + " - ");
 
+                        // Display intermediate total
                         resultDisplay.setText(decimalFormat.format(total));
                         lastOperation = Operation.SUBTRACTION;
                     }
@@ -462,6 +470,9 @@ public class MainActivity extends AppCompatActivity {
                             case SUBTRACTION:
                                 total = total - curNum;
                                 break;
+                            case DIVISION:
+                                total = total / curNum;
+                                break;
                         }
                         resultDisplay.setText(decimalFormat.format(total));
                         operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " x ");
@@ -477,6 +488,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                             operationDisplay.setText(opStr + decimalFormat.format(curNum) + " x ");
 
+                        // Display intermediate total
                         resultDisplay.setText(decimalFormat.format(total));
                         lastOperation = Operation.MULTIPLICATION;
                     }
@@ -488,6 +500,67 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
+                }
+            }
+        });
+
+        btnDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (newOperation) {
+                    addition = false;
+                    subtraction = false;
+                    multiplication = false;
+                    division = true;
+
+                    // If this is the first operation in the equation
+                    String opStr = operationDisplay.getText().toString();
+                    if (opStr.length() == 0) {
+                        lastOperation = Operation.DIVISION;
+                    }
+
+                    String curStr = resultDisplay.getText().toString();
+                    double curNum = Double.parseDouble(curStr);
+                    // Finish the last operation
+                    if (lastOperation != Operation.DIVISION) {
+                        switch (lastOperation) {
+                            case ADDITION:
+                                total = total + curNum;
+                                break;
+                            case SUBTRACTION:
+                                total = total - curNum;
+                                break;
+                            case MULTIPLICATION:
+                                total = total * curNum;
+                                break;
+                        }
+                        resultDisplay.setText(decimalFormat.format(total));
+                        operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " ÷ ");
+                        lastOperation = Operation.DIVISION;
+                    } else {
+                        if (operationDisplay.getText().length() == 0)
+                            total = curNum;
+                        else
+                            total = total / curNum;
+
+                        if (operationDisplay.getText().length() == 0)
+                            operationDisplay.setText(decimalFormat.format(curNum) + " ÷ ");
+                        else
+                            operationDisplay.setText(opStr + decimalFormat.format(curNum) + " ÷ ");
+
+                        // Display intermediate total
+                        resultDisplay.setText(decimalFormat.format(total));
+                        lastOperation = Operation.DIVISION;
+                    }
+
+                    // Prepare for new number
+                    // Reset operation
+                    newOperation = false;
+                    // Reset decimal to false
+                    isDecimal = false;
+                    // Reset insert
+                    insert = true;
+
                 }
             }
         });
@@ -509,6 +582,9 @@ public class MainActivity extends AppCompatActivity {
                     case MULTIPLICATION:
                         total = total * curNum;
                         break;
+                    case DIVISION:
+                        total = total / curNum;
+                        break;
                 }
 
                 resultDisplay.setText(decimalFormat.format(total));
@@ -516,6 +592,7 @@ public class MainActivity extends AppCompatActivity {
                 // Reset
                 operationDisplay.setText("");
                 isDecimal = false;
+                insert = true;
                 total = 0;
             }
         });
