@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Operator checks
     private enum Operation  {
-        NONE,
         ADDITION,
         SUBTRACTION,
         MULTIPLICATION,
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean insert = false;
     DecimalFormat decimalFormat = new DecimalFormat("#.##########");
     private double total = 0;
-    private Operation lastOperation = Operation.NONE;
+    private Operation lastOperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -345,10 +344,14 @@ public class MainActivity extends AppCompatActivity {
 
                     String curStr = resultDisplay.getText().toString();
                     double curNum = Double.parseDouble(curStr);
+                    // Finish the last Operation and get the total
                     if (lastOperation != Operation.ADDITION) {
                         switch(lastOperation) {
                             case SUBTRACTION:
                                 total = total - curNum;
+                                break;
+                            case MULTIPLICATION:
+                                total = total * curNum;
                                 break;
                         }
                         resultDisplay.setText(decimalFormat.format(total));
@@ -364,7 +367,6 @@ public class MainActivity extends AppCompatActivity {
                             operationDisplay.setText(opStr + decimalFormat.format(curNum) + " + ");
 
                         lastOperation = Operation.ADDITION;
-
                     }
 
                     // Prepare for new number
@@ -390,15 +392,19 @@ public class MainActivity extends AppCompatActivity {
                     // If this is the first operation in the equation
                     String opStr = operationDisplay.getText().toString();
                     if (opStr.length() == 0) {
-                        lastOperation = Operation.ADDITION;
+                        lastOperation = Operation.SUBTRACTION;
                     }
 
                     String curStr = resultDisplay.getText().toString();
                     double curNum = Double.parseDouble(curStr);
+                    // Finish the last operation
                     if (lastOperation != Operation.SUBTRACTION) {
                         switch (lastOperation) {
                             case ADDITION:
                                 total = total + curNum;
+                                break;
+                            case MULTIPLICATION:
+                                total = total * curNum;
                                 break;
                         }
                         resultDisplay.setText(decimalFormat.format(total));
@@ -406,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
                         lastOperation = Operation.SUBTRACTION;
                     } else {
                         if (operationDisplay.getText().length() == 0)
-                            total = curNum - total;
+                            total = curNum;
                         else
                             total = total - curNum;
 
@@ -430,6 +436,63 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (newOperation) {
+                    addition = false;
+                    subtraction = false;
+                    multiplication = true;
+                    division = false;
+
+                    // If this is the first operation in the equation
+                    String opStr = operationDisplay.getText().toString();
+                    if (opStr.length() == 0) {
+                        lastOperation = Operation.MULTIPLICATION;
+                    }
+
+                    String curStr = resultDisplay.getText().toString();
+                    double curNum = Double.parseDouble(curStr);
+                    // Finish the last operation
+                    if (lastOperation != Operation.MULTIPLICATION) {
+                        switch (lastOperation) {
+                            case ADDITION:
+                                total = total + curNum;
+                                break;
+                            case SUBTRACTION:
+                                total = total - curNum;
+                                break;
+                        }
+                        resultDisplay.setText(decimalFormat.format(total));
+                        operationDisplay.setText(operationDisplay.getText() + decimalFormat.format(curNum) + " x ");
+                        lastOperation = Operation.MULTIPLICATION;
+                    } else {
+                        if (operationDisplay.getText().length() == 0)
+                            total = curNum;
+                        else
+                            total = total * curNum;
+
+                        if (operationDisplay.getText().length() == 0)
+                            operationDisplay.setText(decimalFormat.format(curNum) + " x ");
+                        else
+                            operationDisplay.setText(opStr + decimalFormat.format(curNum) + " x ");
+
+                        resultDisplay.setText(decimalFormat.format(total));
+                        lastOperation = Operation.MULTIPLICATION;
+                    }
+
+                    // Prepare for new number
+                    // Reset operation
+                    newOperation = false;
+                    // Reset decimal to false
+                    isDecimal = false;
+                    // Reset insert
+                    insert = true;
+                }
+            }
+        });
+
+
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -442,6 +505,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case SUBTRACTION:
                         total = total - curNum;
+                        break;
+                    case MULTIPLICATION:
+                        total = total * curNum;
                         break;
                 }
 
