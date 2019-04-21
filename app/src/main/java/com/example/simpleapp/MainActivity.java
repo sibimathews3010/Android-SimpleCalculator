@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnEqual;
     private Button btnDot;
     private ImageButton btnDelete;
+    private ImageButton btnPlusMinus;
 
     // TextViews
     private TextView resultDisplay;
@@ -617,6 +618,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnPlusMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get current ResultDisplay string
+                String curStr = resultDisplay.getText().toString();
+
+                // Check if string already has a negative sign
+                if (curStr.charAt(0) == '-') {
+                    // if true, remove the negative sign
+                    String newStr = curStr.substring(1);
+
+                    // Set the newStr to ResultDisplay
+                    resultDisplay.setText(newStr);
+                } else {
+                    // add a negative sign
+                    curStr = '-' + curStr;
+
+                    // Set the newStr to ResultDisplay
+                    resultDisplay.setText(curStr);
+                }
+            }
+        });
+
         btnClearAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -653,6 +677,7 @@ public class MainActivity extends AppCompatActivity {
         btnEqual = findViewById(R.id.btnEqual);
         btnDot = findViewById(R.id.btnDot);
         btnDelete = findViewById(R.id.btnDelete);
+        btnPlusMinus = findViewById(R.id.btnPlusMinus);
 
         // TextViews
         resultDisplay = findViewById(R.id.text_display);

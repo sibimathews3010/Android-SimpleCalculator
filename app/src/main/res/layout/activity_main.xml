@@ -183,11 +183,12 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/btnPlusMinus"
                 android:layout_width="100dp"
                 android:layout_height="90dp"
                 android:padding="35dp"
-                android:src="@drawable/plus_minus"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/plus_minus" />
 
             <Button
                 android:id="@+id/btn0"
