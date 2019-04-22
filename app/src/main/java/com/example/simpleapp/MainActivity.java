@@ -382,6 +382,17 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
+                } else {
+                    // If it's a change of operation, e.g. from addition to division
+                    // Get the operationDisplay
+                    String opStr = operationDisplay.getText().toString();
+                    // remove the last operation and change it to "+"
+                    int lastIndex = opStr.length() - 1;
+                    String newStr = opStr.substring(0, lastIndex - 1);
+                    newStr = newStr + "+ ";
+                    operationDisplay.setText(newStr);
+                    resultDisplay.setText(decimalFormat.format(total));
+                    lastOperation = Operation.ADDITION;
                 }
             }
         });
@@ -442,6 +453,17 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
+                } else {
+                    // If it's a change of operation, e.g. from addition to division
+                    // Get the operationDisplay
+                    String opStr = operationDisplay.getText().toString();
+                    // remove the last operation and change it to "-"
+                    int lastIndex = opStr.length() - 1;
+                    String newStr = opStr.substring(0, lastIndex - 1);
+                    newStr = newStr + "- ";
+                    operationDisplay.setText(newStr);
+                    resultDisplay.setText(decimalFormat.format(total));
+                    lastOperation = Operation.SUBTRACTION;
                 }
             }
         });
@@ -502,6 +524,17 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
+                } else {
+                    // If it's a change of operation, e.g. from addition to division
+                    // Get the operationDisplay
+                    String opStr = operationDisplay.getText().toString();
+                    // remove the last operation and change it to "x"
+                    int lastIndex = opStr.length() - 1;
+                    String newStr = opStr.substring(0, lastIndex - 1);
+                    newStr = newStr + "x ";
+                    operationDisplay.setText(newStr);
+                    resultDisplay.setText(decimalFormat.format(total));
+                    lastOperation = Operation.MULTIPLICATION;
                 }
             }
         });
@@ -553,6 +586,7 @@ public class MainActivity extends AppCompatActivity {
                         // Display intermediate total
                         resultDisplay.setText(decimalFormat.format(total));
                         lastOperation = Operation.DIVISION;
+
                     }
 
                     // Prepare for new number
@@ -562,7 +596,17 @@ public class MainActivity extends AppCompatActivity {
                     isDecimal = false;
                     // Reset insert
                     insert = true;
-
+                } else {
+                    // If it's a change of operation, e.g. from addition to division
+                    // Get the operationDisplay
+                    String opStr = operationDisplay.getText().toString();
+                    // remove the last operation and change it to "÷"
+                    int lastIndex = opStr.length() - 1;
+                    String newStr = opStr.substring(0, lastIndex - 1);
+                    newStr = newStr + "÷ ";
+                    operationDisplay.setText(newStr);
+                    resultDisplay.setText(decimalFormat.format(total));
+                    lastOperation = Operation.DIVISION;
                 }
             }
         });
