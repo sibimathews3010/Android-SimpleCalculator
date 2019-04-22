@@ -22,23 +22,34 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
   - `String.charAt()`
   - `String.valueOf()`
 
-### Supports a mix of operations
-<img src="gifs/mix_operation.gif" alt="mix_operation" height=500px>
+<table>
+  <tr>
+    <td>Supports a mix of operations</td>
+    <td>Change operator in the middle of an operation</td>
+  </tr>
+  <tr>
+    <td><img src="gifs/mix_operation.gif" alt="mix_operation" height=500px></td>
+    <td><img src="gifs/change_operation.gif" alt="change_operation" height=500px></td>
+  </tr>
+  <tr>
+    <td>Backspace to delete a digit</td>
+    <td>Clear all operations</td>
+  </tr>
+  <tr>
+    <td><img src="gifs/backspace.gif" alt="backspace" height=500px></td>
+    <td><img src="gifs/clearAll.gif" alt="clearAll" height=500px></td>
+  </tr>
+  <tr>
+    <td>Clear most recent entry</td>
+    <td>Change of sign</td>
+  </tr>
+  <tr>
+    <td><img src="gifs/clearCurr.gif" alt="clearCurr" height=500px></td>
+    <td><img src="gifs/plusminus.gif" alt="plusminux" height=500px></td>
+  </tr>
+</table>
 
-### Change operator in the middle of an operation
-<img src="gifs/change_operation.gif" alt="change_operation" height=500px>
 
-### Backspace to delete a digit
-<img src="gifs/backspace.gif" alt="backspace" height=500px>
-
-### Clear all operations
-<img src="gifs/clearAll.gif" alt="clearAll" height=500px>
-
-### Clear most recent entry
-<img src="gifs/clearCurr.gif" alt="clearCurr" height=500px>
-
-### Change of sign
-<img src="gifs/plusminus.gif" alt="plusminux" height=500px>
 
 ## Future Development
 - Allows maximum input of 16 digits, and adjust size as digits grow large to fit the screen
