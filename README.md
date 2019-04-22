@@ -23,7 +23,7 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
   - `String.valueOf()`
 
 
-
+## Project Showcase
 <table>
   <tr>
     <td>Supports a mix of operations</td>
