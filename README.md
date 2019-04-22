@@ -3,15 +3,24 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
 
 ## Learning Outcome
 - Familiarized with Android Studio IDE
-- Gained experience with android development layout
+- Android Studio development layout
   - Buttons/ImageButtons
   - TextView
   - Plain Text
-- Gained experience with View Click Events
-- Gained experience with Java arithmetic operations and data types
-- Gained experience working with Relative layout and Linear layout
-- Gained experience using DecimalFormat
-- Gained experience with String manipulation
+  - Relative layout and Linear layout
+- View OnClick Events
+  - View Objects
+- Java arithmetic operations and data types
+  - `BigDecimal`
+  - `double`
+  - `String`
+  - `enum`
+- `DecimalFormat`
+- Java `String` manipulation
+  - `String.substring()`
+  - `String.length()`
+  - `String.charAt()`
+  - `String.valueOf()`
 
 ### Supports a mix of operations
 <img src="gifs/mix_operation.gif" alt="mix_operation" height=500px>
@@ -29,7 +38,7 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
 <img src="gifs/clearCurr.gif" alt="clearCurr" height=500px>
 
 ### Change of sign
-<img src="gifs/plusminus.gif" alt=plusminus" height=500px>
+<img src="gifs/plusminus.gif" alt="plusminux" height=500px>
 
 ## Future Development
 - Allows maximum input of 16 digits, and adjust size as digits grow large to fit the screen
