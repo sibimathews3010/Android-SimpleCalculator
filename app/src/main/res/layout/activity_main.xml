@@ -47,10 +47,11 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnClearCurr"
                 android:layout_width="100dp"
                 android:layout_height="90dp"
                 android:text="CE"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/btnClearAll"

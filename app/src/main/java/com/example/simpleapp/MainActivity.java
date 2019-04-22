@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Clears
     private Button btnClearAll;
-    private Button btnClearLast;
+    private Button btnClearCurr;
 
     // Operator checks
     private enum Operation  {
         ADDITION,
         SUBTRACTION,
         MULTIPLICATION,
-        DIVISION;
+        DIVISION
     }
 
     private boolean newOperation = true;
@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         // Setup View
         setupView();
@@ -685,6 +683,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnClearCurr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear the current ResultDisplay
+                resultDisplay.setText(String.valueOf(0));
+                isDecimal = false;
+            }
+        });
+
         btnClearAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -729,5 +736,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Clears
         btnClearAll = findViewById(R.id.btnClearAll);
+        btnClearCurr = findViewById(R.id.btnClearCurr);
     }
 }
