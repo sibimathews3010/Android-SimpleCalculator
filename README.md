@@ -22,6 +22,8 @@ A simple calculator that calculates addition, subtraction, mulitiplication and d
   - `String.charAt()`
   - `String.valueOf()`
 
+
+
 <table>
   <tr>
     <td>Supports a mix of operations</td>
